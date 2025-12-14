@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nureen Syuhada's Student Bento Grid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* * 1. Global Styles and Reset 
+         */
+        :root {
+            /* Clean, scientific, and modern color palette */
+            --color-white: #ffffff;
+            --color-light-grey: #f8f9fa; /* Soft grey background */
+            --color-medium-grey: #e9ecef; /* Subtle border/divider */
+            --color-dark-grey: #343a40; /* Primary text (Slightly darker for contrast) */
+            --color-accent: #004c99; /* Deep Ocean Blue (UMT Theme) */
+            --color-text-subtle: #6c757d; /* Secondary text */
+            
+            --border-radius: 12px;
+            --spacing-unit: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-light-grey);
+            color: var(--color-dark-grey);
+            min-height: 100vh;
+            padding: var(--spacing-unit);
+        }
+
+        /* * 2. Bento Grid Container 
+         */
+        .bento-grid {
+            display: grid;
+            gap: var(--spacing-unit);
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Default desktop grid layout */
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+        }
+
+        /* * 3. Card Styling (The Bento Box)
+         */
+        .bento-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-medium-grey);
+            border-radius: var(--border-radius);
+            padding: calc(var(--spacing-unit) * 1.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--color-dark-grey);
+        }
+
+        .card-content {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--color-text-subtle);
+            flex-grow: 1;
+        }
+
+        .card-small .card-content {
+            font-size: 0.9rem;
+        }
+
+        /* Accent text styling */
+        .accent-text {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        /* * 4. Specific Card Layouts 
+         */
+        .card-profile {
+            grid-column: span 2;
+            grid-row: span 2;
+            justify-content: space-between;
+        }
+
+        .profile-header h1 {
+            font-size: 2.8rem; /* Slightly bigger font */
+            font-weight: 900;
+            margin-bottom: 4px;
+            color: var(--color-dark-grey);
+        }
+
+        .profile-header p {
+            font-size: 1.2rem;
+            color: var(--color-text-subtle);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .profile-header .tagline {
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--color-accent);
+            margin-top: 8px;
+        }
+
+        .social-links a {
+            color: var(--color-accent);
+            text-decoration: none;
+            margin-right: var(--spacing-unit);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: var(--color-dark-grey);
+        }
+
+        .card-location {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .card-tech-stack {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .subject-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .subject-list li {
+            padding: 4px 0;
+            border-bottom: 1px solid var(--color-medium-grey);
+        }
+        .subject-list li:last-child {
+            border-bottom: none;
+        }
+        .subject-list li::before {
+            content: "• ";
+            color: var(--color-accent);
+            font-weight: 900;
+        }
+
+        .card-case-study {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+        
+        .card-hobby {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .card-playlist {
+            grid-column: span 3;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-dark-grey);
+            color: var(--color-white);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* * 5. Responsiveness 
+         */
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: calc(var(--spacing-unit) * 1.5);
+            }
+
+            .bento-card {
+                grid-column: span 1 !important;
+                grid-row: auto !important;
+            }
+
+            .profile-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="bento-grid">
+        
+        <div class="bento-card card-profile">
+            <header class="profile-header">
+                <h1>NUREEN SYUHADA</h1>
+                <p>
+                    <span class="accent-text">B.Sc. Food Science</span> — Year 1
+                    <br><span class="tagline">'Stepping up with vision and purpose'</span>
+                </p>
+            </header>
+            
+            <div class="card-content">
+                <p>Starting my journey in Food Science, focused on developing strong foundational knowledge in lab techniques and food analysis. Eager to explore the intersection of nutrition and food technology.</p>
+            </div>
+
+            <footer class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">UMT Portal</a>
+            </footer>
+        </div>
+
+        <div class="bento-card card-location card-small">
+            <p class="card-title accent-text">Current Location</p>
+            <div class="card-content">
+                <p>UMT, Kuala Nerus, Terengganu</p>
+                <p>Time: <span class="accent-text" id="current-time">14:32:12</span></p>
+                <script>
+                    function updateTime() {
+                        // Ensure the locale setting is correct for 24-hour time format
+                        const now = new Date();
+                        const timeString = now.toLocaleTimeString('en-GB', { hour12: false });
+                        document.getElementById('current-time').textContent = timeString;
+                    }
+                    // Current time is 14:32:12, December 14, 2025 (+08)
+                    updateTime(); // Initial call to set current time
+                    setInterval(updateTime, 1000); // Update every second
+                </script>
+            </div>
+        </div>
+
+        <div class="bento-card card-tech-stack">
+            <p class="card-title">Core Subjects & Skills</p>
+            <div class="card-content">
+                <ul class="subject-list">
+                    <li><span class="accent-text">Food Chemistry</span> (Fundamentals)</li>
+                    <li><span class="accent-text">Food Microbiology</span></li>
+                    <li>Advanced <span class="accent-text">Excel</span> for Data Analysis</li>
+                    <li>Basic Lab Analysis Techniques</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bento-card card-case-study">
+            <p class="card-title accent-text">Lab Project Highlight</p>
+            <div class="card-content">
+                <p><strong>Title:</strong> Starch Gelatinization in Local Kuih</p>
+                <p>Analyzing the relationship between steaming duration and the resulting texture profiles of popular Malaysian dessert, Kuih Lapis.</p>
+            </div>
+        </div>
+
+        <div class="bento-card card-hobby card-small">
+            <p class="card-title">Campus Life</p>
+            <div class="card-content">
+                <p>Mindfulness and fitness achieved through <span class="accent-text">Evening walks at Pantai UMT</span>.</p>
+            </div>
+        </div>
+
+        <div class="bento-card card-playlist">
+            🎧 Current Focus Track: Studying to the Sound of Waves (Ocean Blue Theme)
+        </div>
+
+    </main>
+
+</body>
+</html>
