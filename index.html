@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nureen Syuhada's Student Bento Grid</title>
+    <title>Nureen Syuhada's Student Bento Grid (Inverted Green Theme)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
         /* * 1. Global Styles and Reset 
          */
         :root {
-            /* Clean, scientific, and modern color palette */
+            /* INVERTED DEEP GREEN THEME PALETTE */
             --color-white: #ffffff;
-            --color-light-grey: #f8f9fa; /* Soft grey background */
-            --color-medium-grey: #e9ecef; /* Subtle border/divider */
-            --color-dark-grey: #343a40; /* Primary text (Slightly darker for contrast) */
-            --color-accent: #004c99; /* Deep Ocean Blue (UMT Theme) */
-            --color-text-subtle: #6c757d; /* Secondary text */
+            --color-light-grey-text: #f0f2f5; /* Light grey for standard text */
+            --color-background-dark: #121212; /* NEW: Very Dark, near black page background */
+            --color-card-green: #006F3C; /* NEW: Cadmium Green for card backgrounds */
+            --color-accent-highlight: #90EE90; /* NEW: Light Green for accents and links */
+            --color-medium-grey-border: #008844; /* Darker green border */
+            --color-text-subtle: #cccccc; /* Subtle text color on green */
             
             --border-radius: 12px;
             --spacing-unit: 16px;
@@ -29,8 +30,9 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--color-light-grey);
-            color: var(--color-dark-grey);
+            /* Body background is near black to contrast the green cards */
+            background-color: var(--color-background-dark); 
+            color: var(--color-light-grey-text);
             min-height: 100vh;
             padding: var(--spacing-unit);
         }
@@ -42,50 +44,52 @@
             gap: var(--spacing-unit);
             max-width: 1200px;
             margin: 0 auto;
-            /* Default desktop grid layout */
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: auto;
         }
 
-        /* * 3. Card Styling (The Bento Box)
+        /* * 3. Card Styling (The Bento Box) - CARDS ARE NOW GREEN
          */
         .bento-card {
-            background-color: var(--color-white);
-            border: 1px solid var(--color-medium-grey);
+            background-color: var(--color-card-green); /* Cards are green */
+            border: 1px solid var(--color-medium-grey-border); /* Dark green border */
             border-radius: var(--border-radius);
             padding: calc(var(--spacing-unit) * 1.5);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow for lift */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
             display: flex;
             flex-direction: column;
+            position: relative; 
+            z-index: 1; 
         }
 
         .bento-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px) scale(1.005);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
         }
 
+        /* Text inside the green cards is WHITE */
         .card-title {
             font-weight: 700;
             font-size: 1.2rem;
             margin-bottom: 8px;
-            color: var(--color-dark-grey);
+            color: var(--color-white); 
         }
 
         .card-content {
             font-size: 1rem;
             line-height: 1.6;
-            color: var(--color-text-subtle);
+            color: var(--color-text-subtle); /* Subtle white/light gray */
             flex-grow: 1;
         }
-
+        
         .card-small .card-content {
             font-size: 0.9rem;
         }
 
-        /* Accent text styling */
+        /* Accent text styling is now LIGHT GREEN */
         .accent-text {
-            color: var(--color-accent);
+            color: var(--color-accent-highlight); 
             font-weight: 600;
         }
 
@@ -95,106 +99,89 @@
             grid-column: span 2;
             grid-row: span 2;
             justify-content: space-between;
-        }
-
-        .profile-header h1 {
-            font-size: 2.8rem; /* Slightly bigger font */
-            font-weight: 900;
-            margin-bottom: 4px;
-            color: var(--color-dark-grey);
-        }
-
-        .profile-header p {
-            font-size: 1.2rem;
-            color: var(--color-text-subtle);
-            margin-bottom: var(--spacing-unit);
-        }
-
-        .profile-header .tagline {
-            font-style: italic;
-            font-size: 1rem;
-            color: var(--color-accent);
-            margin-top: 8px;
-        }
-
-        .social-links a {
-            color: var(--color-accent);
-            text-decoration: none;
-            margin-right: var(--spacing-unit);
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .social-links a:hover {
-            color: var(--color-dark-grey);
-        }
-
-        .card-location {
-            grid-column: span 1;
-            grid-row: span 1;
-        }
-
-        .card-tech-stack {
-            grid-column: span 1;
-            grid-row: span 1;
-        }
-
-        .subject-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .subject-list li {
-            padding: 4px 0;
-            border-bottom: 1px solid var(--color-medium-grey);
-        }
-        .subject-list li:last-child {
-            border-bottom: none;
-        }
-        .subject-list li::before {
-            content: "• ";
-            color: var(--color-accent);
-            font-weight: 900;
-        }
-
-        .card-case-study {
-            grid-column: span 1;
-            grid-row: span 1;
+            
+            /* Profile Card BG is still the image first, with the green as fallback */
+            background-image: url('bg.jpg'); 
+            background-size: cover;          
+            background-position: center;     
+            background-repeat: no-repeat;    
+            background-color: var(--color-card-green); 
+            
+            color: var(--color-white); 
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .card-hobby {
-            grid-column: span 1;
-            grid-row: span 1;
+        /* Optional Overlay for Readability */
+        .card-profile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* Slightly stronger dark overlay */
+            border-radius: var(--border-radius);
+            z-index: 2;
         }
 
-        .card-playlist {
+        /* Ensure all profile content sits above the overlay */
+        .card-profile * {
+            position: relative;
+            z-index: 3; 
+        }
+
+        /* Adjust text colors for the dark background/overlay (profile card) */
+        .card-profile .profile-header h1 { color: var(--color-white); }
+        .card-profile .profile-header p { color: rgba(255, 255, 255, 0.9); }
+        .card-profile .tagline { color: var(--color-accent-highlight); }
+        .card-profile .card-content p { color: rgba(255, 255, 255, 0.9); }
+
+        /* Social links on the dark profile card */
+        .card-profile .social-links a { 
+            color: var(--color-accent-highlight); 
+            text-decoration: underline; 
+            font-weight: 700;
+        }
+
+        .card-profile .social-links a:hover { 
+            color: var(--color-white);
+        }
+        
+        /* Specific list style adjustment */
+        .subject-list li::before { 
+            content: "• "; 
+            color: var(--color-accent-highlight); /* Light green bullet */
+            font-weight: 900; 
+        }
+        
+        .card-location { grid-column: span 1; grid-row: span 1; }
+        .card-tech-stack { grid-column: span 1; grid-row: span 1; }
+        .card-case-study { grid-column: span 2; }
+        .card-hobby { grid-column: span 1; grid-row: span 1; }
+        .card-reflection { grid-column: span 1; grid-row: span 1; }
+        
+        /* Playlist card is now part of the main green theme */
+        .card-playlist { 
             grid-column: span 3;
             min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--color-dark-grey);
+            background-color: var(--color-card-green); 
             color: var(--color-white);
             font-weight: 600;
             font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--color-medium-grey-border);
         }
 
         /* * 5. Responsiveness 
          */
         @media (max-width: 768px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-                gap: calc(var(--spacing-unit) * 1.5);
-            }
-
-            .bento-card {
-                grid-column: span 1 !important;
-                grid-row: auto !important;
-            }
-
-            .profile-header h1 {
-                font-size: 2rem;
-            }
+            .bento-grid { grid-template-columns: 1fr; gap: calc(var(--spacing-unit) * 1.5); }
+            .bento-card { grid-column: span 1 !important; grid-row: auto !important; }
+            .profile-header h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -216,9 +203,9 @@
             </div>
 
             <footer class="social-links">
-                <a href="#">LinkedIn</a>
-                <a href="#">GitHub</a>
-                <a href="#">UMT Portal</a>
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">GitHub</a>
+                <a href="#" target="_blank">UMT Portal</a>
             </footer>
         </div>
 
@@ -226,17 +213,15 @@
             <p class="card-title accent-text">Current Location</p>
             <div class="card-content">
                 <p>UMT, Kuala Nerus, Terengganu</p>
-                <p>Time: <span class="accent-text" id="current-time">14:32:12</span></p>
+                <p>Time: <span class="accent-text" id="current-time">16:21:30</span></p>
                 <script>
                     function updateTime() {
-                        // Ensure the locale setting is correct for 24-hour time format
                         const now = new Date();
                         const timeString = now.toLocaleTimeString('en-GB', { hour12: false });
                         document.getElementById('current-time').textContent = timeString;
                     }
-                    // Current time is 14:32:12, December 14, 2025 (+08)
-                    updateTime(); // Initial call to set current time
-                    setInterval(updateTime, 1000); // Update every second
+                    updateTime(); 
+                    setInterval(updateTime, 1000);
                 </script>
             </div>
         </div>
@@ -268,8 +253,15 @@
             </div>
         </div>
 
+        <div class="bento-card card-reflection card-small">
+            <p class="card-title accent-text">Why Food Tech Matters in Malaysia</p>
+            <div class="card-content">
+                <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+            </div>
+        </div>
+
         <div class="bento-card card-playlist">
-            🎧 Current Focus Track: Studying to the Sound of Waves (Ocean Blue Theme)
+            🎧 <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1zweSaoWJ0N7wSwMIxFFQN?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
     </main>
