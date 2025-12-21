@@ -11,12 +11,12 @@
         :root {
             /* INVERTED DEEP GREEN THEME PALETTE */
             --color-white: #ffffff;
-            --color-light-grey-text: #f0f2f5; /* Light grey for standard text */
-            --color-background-dark: #121212; /* NEW: Very Dark, near black page background */
-            --color-card-green: #006F3C; /* NEW: Cadmium Green for card backgrounds */
-            --color-accent-highlight: #90EE90; /* NEW: Light Green for accents and links */
-            --color-medium-grey-border: #008844; /* Darker green border */
-            --color-text-subtle: #cccccc; /* Subtle text color on green */
+            --color-light-grey-text: #f0f2f5; 
+            --color-background-dark: #121212; 
+            --color-card-green: #006F3C; 
+            --color-accent-highlight: #90EE90; 
+            --color-medium-grey-border: #008844; 
+            --color-text-subtle: #cccccc; 
             
             --border-radius: 12px;
             --spacing-unit: 16px;
@@ -30,7 +30,6 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            /* Body background is near black to contrast the green cards */
             background-color: var(--color-background-dark); 
             color: var(--color-light-grey-text);
             min-height: 100vh;
@@ -48,14 +47,14 @@
             grid-template-rows: auto;
         }
 
-        /* * 3. Card Styling (The Bento Box) - CARDS ARE NOW GREEN
+        /* * 3. Card Styling 
          */
         .bento-card {
-            background-color: var(--color-card-green); /* Cards are green */
-            border: 1px solid var(--color-medium-grey-border); /* Dark green border */
+            background-color: var(--color-card-green); 
+            border: 1px solid var(--color-medium-grey-border); 
             border-radius: var(--border-radius);
             padding: calc(var(--spacing-unit) * 1.5);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow for lift */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); 
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
             display: flex;
             flex-direction: column;
@@ -68,7 +67,6 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
         }
 
-        /* Text inside the green cards is WHITE */
         .card-title {
             font-weight: 700;
             font-size: 1.2rem;
@@ -79,7 +77,7 @@
         .card-content {
             font-size: 1rem;
             line-height: 1.6;
-            color: var(--color-text-subtle); /* Subtle white/light gray */
+            color: var(--color-text-subtle); 
             flex-grow: 1;
         }
         
@@ -87,7 +85,6 @@
             font-size: 0.9rem;
         }
 
-        /* Accent text styling is now LIGHT GREEN */
         .accent-text {
             color: var(--color-accent-highlight); 
             font-weight: 600;
@@ -99,20 +96,16 @@
             grid-column: span 2;
             grid-row: span 2;
             justify-content: space-between;
-            
-            /* Profile Card BG is still the image first, with the green as fallback */
             background-image: url('bg.jpg'); 
             background-size: cover;          
             background-position: center;     
             background-repeat: no-repeat;    
             background-color: var(--color-card-green); 
-            
             color: var(--color-white); 
             border: none;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        /* Optional Overlay for Readability */
         .card-profile::before {
             content: '';
             position: absolute;
@@ -120,48 +113,86 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.4); /* Slightly stronger dark overlay */
+            background: rgba(0, 0, 0, 0.4); 
             border-radius: var(--border-radius);
             z-index: 2;
         }
 
-        /* Ensure all profile content sits above the overlay */
-        .card-profile * {
-            position: relative;
-            z-index: 3; 
-        }
+        .card-profile * { position: relative; z-index: 3; }
 
-        /* Adjust text colors for the dark background/overlay (profile card) */
         .card-profile .profile-header h1 { color: var(--color-white); }
         .card-profile .profile-header p { color: rgba(255, 255, 255, 0.9); }
         .card-profile .tagline { color: var(--color-accent-highlight); }
         .card-profile .card-content p { color: rgba(255, 255, 255, 0.9); }
 
-        /* Social links on the dark profile card */
         .card-profile .social-links a { 
             color: var(--color-accent-highlight); 
             text-decoration: underline; 
             font-weight: 700;
         }
 
-        .card-profile .social-links a:hover { 
-            color: var(--color-white);
-        }
+        .card-profile .social-links a:hover { color: var(--color-white); }
         
-        /* Specific list style adjustment */
         .subject-list li::before { 
             content: "• "; 
-            color: var(--color-accent-highlight); /* Light green bullet */
+            color: var(--color-accent-highlight); 
             font-weight: 900; 
         }
         
         .card-location { grid-column: span 1; grid-row: span 1; }
         .card-tech-stack { grid-column: span 1; grid-row: span 1; }
-        .card-case-study { grid-column: span 2; }
+        
+        /* Updated Case Study Card Layout */
+        .card-case-study { 
+            grid-column: span 2; 
+        }
+
+        .case-study-layout {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .case-study-info {
+            flex: 2;
+        }
+
+        .case-study-action {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Lab Timer Button Styling */
+        .btn-lab-timer {
+            display: inline-block;
+            background-color: var(--color-accent-highlight);
+            color: var(--color-card-green) !important;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none !important;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0px #004d2a;
+            border: none;
+        }
+
+        .btn-lab-timer:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 0px #004d2a;
+            background-color: var(--color-white);
+        }
+
+        .btn-lab-timer:active {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 0px #004d2a;
+        }
+
         .card-hobby { grid-column: span 1; grid-row: span 1; }
         .card-reflection { grid-column: span 1; grid-row: span 1; }
         
-        /* Playlist card is now part of the main green theme */
         .card-playlist { 
             grid-column: span 3;
             min-height: 80px;
@@ -176,11 +207,10 @@
             border: 1px solid var(--color-medium-grey-border);
         }
 
-        /* * 5. Responsiveness 
-         */
         @media (max-width: 768px) {
             .bento-grid { grid-template-columns: 1fr; gap: calc(var(--spacing-unit) * 1.5); }
             .bento-card { grid-column: span 1 !important; grid-row: auto !important; }
+            .case-study-layout { flex-direction: column; text-align: center; }
             .profile-header h1 { font-size: 2rem; }
         }
     </style>
@@ -213,7 +243,7 @@
             <p class="card-title accent-text">Current Location</p>
             <div class="card-content">
                 <p>UMT, Kuala Nerus, Terengganu</p>
-                <p>Time: <span class="accent-text" id="current-time">16:21:30</span></p>
+                <p>Time: <span class="accent-text" id="current-time">00:00:00</span></p>
                 <script>
                     function updateTime() {
                         const now = new Date();
@@ -230,33 +260,40 @@
             <p class="card-title">Core Subjects & Skills</p>
             <div class="card-content">
                 <ul class="subject-list">
-                    <li><span class="accent-text">Food Chemistry</span> (Fundamentals)</li>
+                    <li><span class="accent-text">Food Chemistry</span></li>
                     <li><span class="accent-text">Food Microbiology</span></li>
-                    <li>Advanced <span class="accent-text">Excel</span> for Data Analysis</li>
-                    <li>Basic Lab Analysis Techniques</li>
+                    <li>Advanced <span class="accent-text">Excel</span></li>
+                    <li>Basic Lab Analysis</li>
                 </ul>
             </div>
         </div>
 
         <div class="bento-card card-case-study">
-            <p class="card-title accent-text">Lab Project Highlight</p>
-            <div class="card-content">
-                <p><strong>Title:</strong> Starch Gelatinization in Local Kuih</p>
-                <p>Analyzing the relationship between steaming duration and the resulting texture profiles of popular Malaysian dessert, Kuih Lapis.</p>
+            <div class="case-study-layout">
+                <div class="case-study-info">
+                    <p class="card-title accent-text">Lab Project Highlight</p>
+                    <div class="card-content">
+                        <p><strong>Title:</strong> Starch Gelatinization in Local Kuih</p>
+                        <p>Analyzing the relationship between steaming duration and texture profiles of Malaysian Kuih Lapis.</p>
+                    </div>
+                </div>
+                <div class="case-study-action">
+                    <a href="https://s79398.github.io/lab-timer-app/index.html" target="_blank" class="btn-lab-timer">Try My Lab Timer App</a>
+                </div>
             </div>
         </div>
 
         <div class="bento-card card-hobby card-small">
             <p class="card-title">Campus Life</p>
             <div class="card-content">
-                <p>Mindfulness and fitness achieved through <span class="accent-text">Evening walks at Pantai UMT</span>.</p>
+                <p>Mindfulness through <span class="accent-text">Evening walks at Pantai UMT</span>.</p>
             </div>
         </div>
 
         <div class="bento-card card-reflection card-small">
-            <p class="card-title accent-text">Why Food Tech Matters in Malaysia</p>
+            <p class="card-title accent-text">Why Food Tech Matters</p>
             <div class="card-content">
-                <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+                <p>Sustainable food security is crucial. By optimizing processing, we reduce waste and improve nutrition.</p>
             </div>
         </div>
 
